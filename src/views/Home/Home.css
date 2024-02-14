@@ -1,0 +1,49 @@
+body {
+
+    background-image: url('blossoms-3778265_1920.jpg');
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.todo-container {
+    background-color: white;
+    height: 500px;
+    width: 400px;
+    display: block;
+    margin: 100px auto;
+    border-radius: 22px;
+    box-shadow: 0 4px 8px 0 rgba(174, 105, 105, 0.2), 0 6px 20px 0 rgba(174, 105, 105, 0.2);
+
+    /* box-shadow: 0 52px 52px rgba(174, 105, 105, 0.2); */
+
+}
+
+.to-do-title {
+    font-size: 40px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 22px 22px 0 0;
+    background-color: #bf8fbd;
+    color: white;
+}
+
+.list-item {
+    padding: 10px;
+    margin: 15px 10px;
+    border: 1px solid hotpink;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition-duration: 0.4s;
+    background-color: aliceblue;
+
+}
+
+.list-item:hover {
+    background-color: rgb(154, 81, 139);
+    color: white;
+}
+
+.add-btn{
+    cursor: pointer;
+}
