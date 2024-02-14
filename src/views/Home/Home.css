@@ -6,8 +6,9 @@ body {
 }
 
 .todo-container {
+    padding-bottom: 20px;
     background-color: white;
-    height: 500px;
+    height: 550px;
     width: 400px;
     display: block;
     margin: 100px auto;
@@ -46,4 +47,9 @@ body {
 
 .add-btn{
     cursor: pointer;
+}
+
+.input{
+    border: 2px solid rgb(122, 122, 204);
+    border-radius: 22px;
 }
