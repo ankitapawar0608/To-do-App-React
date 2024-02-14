@@ -3,7 +3,18 @@ import "./Home.css"
 import imgadd from "./button.png"
 
 function Home() {
-  
+  const [tasks, setTasks] = useState([]);
+  const [newtask , setNewtask] = useState('');
+
+  const addTask = () => {
+    if (newtask === ''){
+      alert("Please enter a task!!")
+      return
+    }
+
+    setTasks([ newtask, ...tasks]);
+    setNewtask('')
+  }
 
 
   return (
