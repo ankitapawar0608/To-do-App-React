@@ -1,20 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Home.css"
 import imgadd from "./button.png"
+import TaskCard from '../../component/TaskCard/TaskCard';
 
 function Home() {
   const [tasks, setTasks] = useState([]);
   const [newtask , setNewtask] = useState('');
+  const [error , setError] = useState('');
+
 
   const addTask = () => {
     if (newtask === ''){
-      alert("Please enter a task!!")
+      setError('Please enter a task!!');
       return
+    }
+    else if(newtask.length < 5 ){
+      setError('Task should be at least 5 characters long!')
+    }
+    else{
+      setError("")
     }
 
     setTasks([ newtask, ...tasks]);
     setNewtask('')
   }
+
+
+ useEffect (()=>{
+  if (tasks.length ===0 ){
+    return
+  }
+
+   localStorage.setItem('tasks', JSON.stringify(tasks))
+ } ,[tasks])
+
+ useEffect(()=>{
+  const tasks = localStorage.getItem('tasks');
+  if (tasks){
+    setTasks(JSON.parse(tasks));
+  }
+ },[])
 
 
   return (
@@ -46,22 +71,23 @@ function Home() {
           />
         </div>
 
-        <div className='d-flex flex-column align-items-center overflow-y-scroll h-75 '>
+        <div className='d-flex flex-column overflow-y-scroll h-75 '>
           {
             tasks.map((task, i) => {
               return (
-               <p key={i} className='border border-2 border-info text-center w-75 rounded-pill fw-normal  fs-4'>
-                 <h4>
-                  {task}
-                </h4>
-               </p>
+                
+              <TaskCard task={task} key={i}/>
+             
                 )
             })
           }
+          <p className='text-danger'>{error}</p>
         </div>
 
-      </div>
+       
 
+      </div>
+      
 
     </div>
   )
