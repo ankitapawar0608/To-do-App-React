@@ -25,6 +25,13 @@ function Home() {
     setNewtask('')
   }
 
+  const deleteTask = (index) => {
+    const newtaskss = tasks;
+    newtaskss.splice(index,1);
+    setTasks([...newtaskss]);
+
+    localStorage.setItem('tasks',JSON.stringify(newtaskss));
+  }
 
  useEffect (()=>{
   if (tasks.length ===0 ){
@@ -70,18 +77,22 @@ function Home() {
           onClick={addTask}
           />
         </div>
-
+        <p className='text-danger text-center'>{error}</p>
         <div className='d-flex flex-column overflow-y-scroll h-75 '>
           {
             tasks.map((task, i) => {
               return (
                 
-              <TaskCard task={task} key={i}/>
+              <TaskCard 
+              task={task} 
+              key={i} 
+              del={deleteTask} 
+              index={i}/>
              
                 )
             })
           }
-          <p className='text-danger'>{error}</p>
+          
         </div>
 
        
