@@ -21,11 +21,11 @@ function Home() {
       setError("")
     }
 
-    const newtaskss = [newtask, ...tasks]
     
-saveTasksToLocalStorage(newtaskss)
+    
+     saveTasksToLocalStorage(newtask, ...tasks)
 
-    setTasks([ newtaskss]);
+    setTasks([ newtask, ...tasks]);
     setNewtask('')
   }
 
