@@ -21,8 +21,16 @@ function Home() {
       setError("")
     }
 
-    setTasks([ newtask, ...tasks]);
+    const newtaskss = [newtask, ...tasks]
+    
+saveTasksToLocalStorage(newtaskss)
+
+    setTasks([ newtaskss]);
     setNewtask('')
+  }
+
+  const saveTasksToLocalStorage = (tasksToSave) => {
+    localStorage.setItem('tasks',JSON.stringify(tasksToSave))
   }
 
   const deleteTask = (index) => {
@@ -30,16 +38,19 @@ function Home() {
     newtaskss.splice(index,1);
     setTasks([...newtaskss]);
 
-    localStorage.setItem('tasks',JSON.stringify(newtaskss));
+saveTasksToLocalStorage(newtaskss)
   }
 
- useEffect (()=>{
-  if (tasks.length ===0 ){
-    return
-  }
 
-   localStorage.setItem('tasks', JSON.stringify(tasks))
- } ,[tasks])
+
+
+//  useEffect (()=>{
+//   if (tasks.length ===0 ){
+//     return
+//   }
+
+//   saveTasksToLocalStorage(tasks);
+//  } ,[tasks])
 
  useEffect(()=>{
   const tasks = localStorage.getItem('tasks');
@@ -77,6 +88,12 @@ function Home() {
           onClick={addTask}
           />
         </div>
+
+
+             {/* <select>
+              <option></option>
+             </select> */}
+
         <p className='text-danger text-center'>{error}</p>
         <div className='d-flex flex-column overflow-y-scroll h-75 '>
           {
