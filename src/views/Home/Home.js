@@ -21,36 +21,23 @@ function Home() {
       setError("")
     }
 
-    
-    
-     saveTasksToLocalStorage(newtask, ...tasks)
-
     setTasks([ newtask, ...tasks]);
     setNewtask('')
-  }
-
-  const saveTasksToLocalStorage = (tasksToSave) => {
-    localStorage.setItem('tasks',JSON.stringify(tasksToSave))
   }
 
   const deleteTask = (index) => {
     const newtaskss = tasks;
     newtaskss.splice(index,1);
-    setTasks([...newtaskss]);
-
-saveTasksToLocalStorage(newtaskss)
+    setTasks([...newtaskss])
   }
 
+ useEffect (()=>{
+  if (tasks.length ===0 ){
+    return
+  }
 
-
-
-//  useEffect (()=>{
-//   if (tasks.length ===0 ){
-//     return
-//   }
-
-//   saveTasksToLocalStorage(tasks);
-//  } ,[tasks])
+   localStorage.setItem('tasks', JSON.stringify(tasks))
+ } ,[tasks])
 
  useEffect(()=>{
   const tasks = localStorage.getItem('tasks');
@@ -88,12 +75,6 @@ saveTasksToLocalStorage(newtaskss)
           onClick={addTask}
           />
         </div>
-
-
-             {/* <select>
-              <option></option>
-             </select> */}
-
         <p className='text-danger text-center'>{error}</p>
         <div className='d-flex flex-column overflow-y-scroll h-75 '>
           {
